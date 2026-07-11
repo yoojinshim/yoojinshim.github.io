@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoojin Shim — Portfolio</title>
+<meta name="description" content="Yoojin Shim — research portfolio in causal inference, marketing analytics, and applied LLMs.">
+<style>
+  :root {
+    --navy: #0a1f44;
+    --navy-deep: #06132b;
+    --navy-light: #1b3a6b;
+    --navy-mid: #16345f;
+    --white: #ffffff;
+    --off-white: #f6f8fb;
+    --gray: #5a6472;
+    --gray-light: #8a93a3;
+    --border: #e2e6ed;
+    --accent: #3d6bb3;
+    --max-width: 960px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--navy);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  img { max-width: 100%; display: block; }
+
+  /* ---------- Nav ---------- */
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+
+  .nav-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--off-white);
+    font-size: 0.92rem;
+    font-weight: 500;
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* ---------- Hero / About ---------- */
+  section.hero {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+    color: var(--white);
+    padding: 64px 24px 72px;
+  }
+
+  .hero-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero .subtitle {
+    font-size: 1.05rem;
+    color: #c7d3e8;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .hero .bio {
+    max-width: 640px;
+    color: #dbe4f3;
+    font-size: 1rem;
+    margin-bottom: 28px;
+  }
+
+  .interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .interest-pill {
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #e8edf7;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--navy);
+    background: var(--white);
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .contact-links a:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  }
+
+  .contact-links a.secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+
+  /* ---------- Sections generic ---------- */
+  section.content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+
+  section.content.alt {
+    background: var(--off-white);
+  }
+
+  h2.section-title {
+    font-size: 1.6rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  p.section-lede {
+    color: var(--gray);
+    margin-bottom: 36px;
+    max-width: 620px;
+  }
+
+  /* ---------- Project cards ---------- */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 8px 24px rgba(10,31,68,0.09);
+    transform: translateY(-2px);
+  }
+
+  .project-card.flagship {
+    border-top: 3px solid var(--navy);
+  }
+
+  .project-card h3 {
+    font-size: 1.12rem;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+
+  .project-summary {
+    color: var(--gray);
+    font-size: 0.93rem;
+    margin-bottom: 14px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .tag {
+    background: var(--off-white);
+    color: var(--navy-light);
+    border: 1px solid var(--border);
+    font-size: 0.74rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .findings {
+    list-style: none;
+    margin-bottom: 18px;
+    flex-grow: 1;
+  }
+
+  .findings li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 0.88rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .findings li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .card-links {
+    display: flex;
+    gap: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+
+  .card-links a {
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .card-links a:hover { text-decoration: underline; }
+
+  .card-note {
+    font-size: 0.78rem;
+    color: var(--gray-light);
+    font-style: italic;
+  }
+
+  /* ---------- Minor project card ---------- */
+  .project-card.minor {
+    padding: 20px 26px;
+  }
+
+  .project-card.minor h3 {
+    font-size: 1rem;
+  }
+
+  .project-card.minor .project-summary {
+    margin-bottom: 10px;
+  }
+
+  .project-card.minor .findings {
+    margin-bottom: 0;
+  }
+
+  /* ---------- CV section ---------- */
+  .cv-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cv-box p { color: var(--gray); font-size: 0.95rem; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    padding: 11px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: background 0.15s ease;
+  }
+
+  .btn-primary:hover { background: var(--navy-light); }
+
+  /* ---------- Footer ---------- */
+  footer.site-footer {
+    background: var(--navy-deep);
+    color: #9fb0cc;
+    text-align: center;
+    padding: 28px 24px;
+    font-size: 0.85rem;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 700px) {
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--navy);
+      flex-direction: column;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease;
+    }
+    .nav-links.open { max-height: 240px; }
+    .nav-links li { border-top: 1px solid rgba(255,255,255,0.1); }
+    .nav-links a {
+      display: block;
+      padding: 14px 24px;
+    }
+    .nav-toggle { display: block; }
+    .cv-box { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#about">Yoojin Shim</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Research Projects</a></li>
+      <li><a href="#cv">CV</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" id="about">
+  <div class="hero-inner">
+    <h1>Yoojin Shim</h1>
+    <p class="subtitle">MS Business Analytics &amp; Management, Rotterdam School of Management (Erasmus University) &middot; BA Advertising, Peking University</p>
+    <p class="bio">I work at the intersection of causal inference, marketing analytics, and applied LLMs — building targeting models, auditing AI systems, and turning messy operational data into decisions. My work spans e-commerce discount optimization, shipping/logistics analytics, and computational text analysis.</p>
+    <div class="interests">
+      <span class="interest-pill">Causal Inference &amp; Uplift Modeling</span>
+      <span class="interest-pill">Marketing &amp; Pricing Analytics</span>
+      <span class="interest-pill">Applied LLMs</span>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:yoojinshim57@gmail.com">Email</a>
+      <a class="secondary" href="https://www.linkedin.com/in/yoojin-shim/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="secondary" href="https://github.com/yoojinshim" target="_blank" rel="noopener">GitHub</a>
+      <a class="secondary" href="cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="projects">
+  <h2 class="section-title">Research Projects</h2>
+  <p class="section-lede">A selection of academic and applied analytics projects, spanning causal machine learning, NLP, and marketing science.</p>
+
+  <div class="project-grid">
+
+    <div class="project-card flagship">
+      <h3>Discount Optimization in DTC Email Marketing</h3>
+      <p class="project-summary">Built a causal machine learning pipeline to personalize discount targeting for a European sportswear retailer's email marketing, balancing profit uplift against discount cost.</p>
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">Causal Forest (IPW-adjusted)</span>
+        <span class="tag">K-means (k=4)</span>
+        <span class="tag">Off-Policy Evaluation</span>
+        <span class="tag">Bootstrap</span>
+      </div>
+      <ul class="findings">
+        <li><strong>82.2%</strong> reduction in discount cost vs. the historical policy</li>
+        <li><strong>+1.22</strong> margin uplift per customer under the dual-threshold targeting rule</li>
+        <li>Bootstrap 95% CI <strong>[0.0058, 0.0070]</strong>; model recall of <strong>0.98</strong> on held-out purchase outcomes</li>
+      </ul>
+      <div class="card-links">
+        <a href="masters-thesis.pdf" target="_blank" rel="noopener">Paper (anonymized)</a>
+        <a href="https://github.com/yoojinshim/thesis_code" target="_blank" rel="noopener">Code</a>
+      </div>
+      <p class="card-note">Code repo is a placeholder — no data included.</p>
+    </div>
+
+    <div class="project-card flagship">
+      <h3>Commercial Intelligence Pipeline — Reederei Nord</h3>
+      <p class="project-summary">Audited nine commercial datasets for a crude tanker operator and built a reproducible ETL + LLM extraction pipeline that surfaced millions in mis-tracked profitability.</p>
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">DuckDB</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">LLM Extraction (Claude)</span>
+      </div>
+      <ul class="findings">
+        <li><strong>$3.5M</strong> gap between estimated and actual TCE across 504 voyages</li>
+        <li><strong>$351K–$737K</strong> in understated demurrage revenue from unresolved disputes</li>
+        <li>LLM extraction pipeline null rate cut from <strong>21% → 5.4%</strong> across 711 broker recap emails</li>
+      </ul>
+      <div class="card-links">
+        <a href="https://github.com/yoojinshim/reedereiProject" target="_blank" rel="noopener">Code</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>Evaluating GenAI Text Quality in Professional Writing</h3>
+      <p class="project-summary">Analyzed the standardized rhetorical structure of 620 professional obituaries using computational text analysis, then trained an LLM to reproduce the format with high fidelity.</p>
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">Jieba</span>
+        <span class="tag">TF-IDF</span>
+        <span class="tag">Move Analysis (Swales 1990)</span>
+        <span class="tag">LLM Prompting</span>
+      </div>
+      <ul class="findings">
+        <li>Corpus analysis of <strong>620</strong> texts (2016–2023) across three structural categories</li>
+        <li>AI-generated text reached <strong>0.91</strong> cosine similarity with held-out originals in the most standardized category</li>
+        <li>Graded <strong>95/100</strong></li>
+      </ul>
+      <div class="card-links">
+        <a href="bachelors-abstract.html">Abstract</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>Marketplace Performance Evaluation — MediaMarkt</h3>
+      <p class="project-summary">Team project testing whether a retailer's marketplace launch improved customer sentiment, using BERT sentiment scoring and topic modeling on consumer reviews.</p>
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">BERT</span>
+        <span class="tag">LDA Topic Modeling</span>
+        <span class="tag">OLS Regression</span>
+      </div>
+      <ul class="findings">
+        <li>Review-level sentiment <strong>+0.117</strong>, star rating <strong>+0.171</strong> post-launch (both p&lt;0.001)</li>
+        <li>Delivery-topic review volume rose <strong>+80%</strong> after rollout</li>
+        <li>In-store experience was the one area that worsened (<strong>-0.019</strong> sentiment)</li>
+      </ul>
+    </div>
+
+    <div class="project-card">
+      <h3>Marketing Models for NetEase Cloud Music</h3>
+      <p class="project-summary">Team project modeling content diffusion and recommender-system causal effects for a music-social platform.</p>
+      <div class="tag-row">
+        <span class="tag">R</span>
+        <span class="tag">Bass Diffusion Model</span>
+        <span class="tag">Random Forest</span>
+        <span class="tag">2SLS / IV Regression</span>
+      </div>
+      <ul class="findings">
+        <li>Random forest outperformed linear regression on diffusion-parameter MSE for both <strong>p</strong> and <strong>q</strong></li>
+        <li>Publish recency was the strongest predictor of both innovation and imitation parameters</li>
+        <li>Recommender system's causal effect on clicks was not statistically distinguishable from zero (95% CI spans 0)</li>
+      </ul>
+    </div>
+
+    <div class="project-card">
+      <h3>Do LLMs Vary Parenting Advice by Gender?</h3>
+      <p class="project-summary">Solo bias audit testing whether GPT-4 and Gemini 2.5 respond differently in tone to parenting questions based on the user's stated gender.</p>
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">OLS Regression</span>
+        <span class="tag">Prompt Auditing</span>
+      </div>
+      <ul class="findings">
+        <li>GPT-4 sentiment toward mothers was <strong>1.03 pts</strong> lower than toward fathers on a 5-pt scale (p&lt;0.001)</li>
+        <li>Gemini 2.5 showed no significant gender-based sentiment gap (p=0.648)</li>
+        <li>The bias appeared in tone, not in advice content — emotionality itself didn't differ significantly</li>
+      </ul>
+    </div>
+
+    <div class="project-card minor">
+      <h3>Health Risk Segmentation — Achmea (Netherlands)</h3>
+      <p class="project-summary">Team project building a PCA-based health metric and geospatial risk segmentation to flag over/under-represented health-insurance regions in the Netherlands.</p>
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">PCA</span>
+        <span class="tag">K-means</span>
+        <span class="tag">Geopandas / Folium</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="content alt" id="cv">
+  <h2 class="section-title">CV</h2>
+  <div class="cv-box">
+    <p>Full CV with education, experience, and skills.</p>
+    <a class="btn-primary" href="cv.pdf" target="_blank" rel="noopener">View / Download CV</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  &copy; <span id="year"></span> Yoojin Shim
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function () {
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { links.classList.remove('open'); });
+  });
+</script>
+
+</body>
+</html>

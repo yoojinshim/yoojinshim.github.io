@@ -310,6 +310,66 @@
     margin-bottom: 0;
   }
 
+  /* ---------- Education / Experience sections ---------- */
+  .education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .education-row {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 26px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .education-row:hover {
+    box-shadow: 0 8px 24px rgba(10,31,68,0.09);
+    transform: translateY(-2px);
+  }
+
+  .edu-logo {
+    flex: 0 0 64px;
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .edu-logo img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+
+  .edu-details h3 {
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 4px;
+    line-height: 1.35;
+  }
+
+  .edu-degree {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 2px;
+  }
+
+  .edu-dates {
+    font-size: 0.82rem;
+    color: var(--gray-light);
+  }
+
   /* ---------- CV section ---------- */
   .cv-box {
     background: var(--white);
@@ -390,18 +450,40 @@
 <section class="hero" id="about">
   <div class="hero-inner">
     <h1>Yoojin Shim</h1>
-    <p class="subtitle">MS Business Analytics &amp; Management, Rotterdam School of Management (Erasmus University) &middot; BA Advertising, Peking University</p>
-    <p class="bio">I work at the intersection of causal inference, marketing analytics, and applied LLMs — building targeting models, auditing AI systems, and turning messy operational data into decisions. My work spans e-commerce discount optimization, shipping/logistics analytics, and computational text analysis.</p>
+    <p class="bio">I'm a recent MSc graduate (Cum Laude) from Rotterdam School of Management seeking a <strong>Research Assistant position in quantitative marketing or IS</strong>. My work combines causal inference, uplift modeling, and applied ML to study pricing, promotions, and consumer behavior.</p>
     <div class="interests">
-      <span class="interest-pill">Causal Inference &amp; Uplift Modeling</span>
-      <span class="interest-pill">Marketing &amp; Pricing Analytics</span>
-      <span class="interest-pill">Applied LLMs</span>
+      <span class="interest-pill">Quantitative Marketing</span>
+      <span class="interest-pill">Causal Inference</span>
+      <span class="interest-pill">Digital Platforms</span>
+      <span class="interest-pill">AI &amp; Marketing</span>
     </div>
     <div class="contact-links">
       <a href="mailto:yoojinshim57@gmail.com">Email</a>
       <a class="secondary" href="https://www.linkedin.com/in/yoojin-shim/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="secondary" href="https://github.com/yoojinshim" target="_blank" rel="noopener">GitHub</a>
       <a class="secondary" href="cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="education">
+  <h2 class="section-title">Education</h2>
+  <div class="education-list">
+    <div class="education-row">
+      <div class="edu-logo"><img src="assets/erasmus-logo.svg" alt="Erasmus University Rotterdam logo"></div>
+      <div class="edu-details">
+        <h3>Rotterdam School of Management, Erasmus University</h3>
+        <p class="edu-degree">MSc Business Analytics &amp; Management &middot; Cum Laude</p>
+        <p class="edu-dates">2024–2025</p>
+      </div>
+    </div>
+    <div class="education-row">
+      <div class="edu-logo"><img src="assets/pku-seal.svg" alt="Peking University seal"></div>
+      <div class="edu-details">
+        <h3>Peking University</h3>
+        <p class="edu-degree">BA Advertising, School of Journalism and Communication</p>
+        <p class="edu-dates">2020–2024</p>
+      </div>
     </div>
   </div>
 </section>
@@ -413,7 +495,7 @@
   <div class="project-grid">
 
     <div class="project-card flagship">
-      <h3>Discount Optimization in DTC Email Marketing</h3>
+      <h3>Segmented &amp; Individualized Discount Optimization — Master's Thesis (RSM Erasmus)</h3>
       <p class="project-summary">Built a causal machine learning pipeline to personalize discount targeting for a European sportswear retailer's email marketing, balancing profit uplift against discount cost.</p>
       <div class="tag-row">
         <span class="tag">Python</span>
@@ -429,9 +511,7 @@
       </ul>
       <div class="card-links">
         <a href="masters-thesis.pdf" target="_blank" rel="noopener">Paper (anonymized)</a>
-        <a href="https://github.com/yoojinshim/thesis_code" target="_blank" rel="noopener">Code</a>
       </div>
-      <p class="card-note">Code repo is a placeholder — no data included.</p>
     </div>
 
     <div class="project-card flagship">
@@ -535,6 +615,26 @@
   </div>
 </section>
 
+<section class="content" id="experience">
+  <h2 class="section-title">Experience</h2>
+  <div class="education-list">
+    <div class="education-row">
+      <div class="edu-details">
+        <h3>Under Armour Europe</h3>
+        <p class="edu-degree">Pricing Analyst Intern</p>
+        <p class="edu-dates">Feb–Jun 2025</p>
+      </div>
+    </div>
+    <div class="education-row">
+      <div class="edu-details">
+        <h3>Kuaishou Technology</h3>
+        <p class="edu-degree">E-commerce Analyst Intern</p>
+        <p class="edu-dates">Aug–Nov 2023</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="content alt" id="cv">
   <h2 class="section-title">CV</h2>
   <div class="cv-box">
@@ -545,6 +645,7 @@
 
 <footer class="site-footer">
   &copy; <span id="year"></span> Yoojin Shim
+  <br>Built with the help of Claude (Anthropic)
 </footer>
 
 <script>
